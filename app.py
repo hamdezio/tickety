@@ -148,6 +148,15 @@ def delete_ticket(ticket_id):
         return jsonify({'message': 'Ticket deleted'}), 200
     except Exception:
         return jsonify({'error': 'Ticket not found'}), 404
+@app.route('/me', methods=['GET'])
+@token_required
+def get_current_user():
+    user = g.current_user
+    return jsonify({
+        'username': user.username,
+        'role': user.role
+    }), 200
+
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5002))
