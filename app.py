@@ -3,8 +3,10 @@ from mongoengine import connect
 from models import Ticket, ALLOWED_PRIORITIES, ALLOWED_STATUSES
 from auth import auth_bp, token_required
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config['SECRET_KEY'] = 'tickety-secret-key'
 
 uri= "mongodb+srv://TicketyMaster:highsec@stuproj.hyghk8a.mongodb.net/?retryWrites=true&w=majority&appName=stuproj"
